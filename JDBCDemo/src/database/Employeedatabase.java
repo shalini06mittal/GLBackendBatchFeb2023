@@ -19,7 +19,6 @@ public class EmployeeDatabase {
         /**
          * 1. get DB connection
          */
-
         //2. create statements
         List<Employee> emps = new ArrayList<>();
         try {
