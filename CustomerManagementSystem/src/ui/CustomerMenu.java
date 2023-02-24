@@ -18,8 +18,11 @@ public class CustomerMenu {
 
 	public static void customerMenu()
 	{
+		// do not show the password
 		System.out.println("1. Profile");
+		// ask the user to enter new password
 		System.out.println("2. Change password");
+		// do not touch the password
 		System.out.println("3. Edit Profile");
 		System.out.println("4. Logout");
 	}
