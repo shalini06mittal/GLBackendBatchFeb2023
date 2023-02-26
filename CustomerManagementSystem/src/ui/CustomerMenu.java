@@ -2,6 +2,7 @@ package ui;
 
 import java.util.Scanner;
 
+import database.CustomerDBConnection;
 import database.CustomerDatabase;
 import model.Customer;
 import service.CustomerService;
@@ -24,13 +25,16 @@ public class CustomerMenu {
 		System.out.println("2. Change password");
 		// do not touch the password
 		System.out.println("3. Edit Profile");
-		System.out.println("4. Logout");
+		System.out.println("4. Delete customer account");
+		System.out.println("5. Logout");
 	}
 
 	public static void main(String[] args) {
 
-		CustomerDatabase customerDb = new CustomerDatabase();
+		//CustomerDatabase customerDb = new CustomerDatabase();
+		CustomerDBConnection customerDb = new CustomerDBConnection();
 		CustomerService customerService = new CustomerService(customerDb);
+
 		Scanner sc = new Scanner(System.in);
 		String email, password, phone, city, name;
 		int choice;
@@ -58,7 +62,7 @@ public class CustomerMenu {
 					try {
 						if(customerService.validateCredentials(email, password))
 						{
-							customerDashboard(sc, customerService);
+							customerDashboard(sc, customerService, email);
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -66,10 +70,28 @@ public class CustomerMenu {
 				}
 				break;
 			case 2:
-				System.out.println("Register Customer");
+				System.out.println("Please enter details to register");
+				System.out.println("enter email");
+				email = sc.next();
+				System.out.println("Enter your name");
+				name= sc.next();
+				System.out.println("Enter your city");
+				city = sc.next();
+				System.out.println("enter your phone");
+				phone = sc.next();
+				System.out.println("Enter your password");
+				password = sc.next();
+				Customer c1 = new Customer(email, name, city, phone, password);
+				try {
+					customerService.registerCustomer(c1);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 3: System.out.println("Thanks exiting the application");
 			flag = false;
+			break;
 			default : System.out.println("Wrong option");
 			}
 		}while(flag);
@@ -114,12 +136,38 @@ public class CustomerMenu {
 			default:System.out.println("Wrong choice");
 			}
 		}while(flag);
+
 	}
 
-	public static void customerDashboard(Scanner sc, CustomerService customerService)
+	public static void customerDashboard(Scanner sc, CustomerService customerService, String email)
 	{
-		customerMenu();
-		int choice = sc.nextInt();
+		boolean flag = true;
+		do {
+			System.out.println("\n ********** Customer dashboard ********** \n");
+
+			customerMenu();
+			int choice = sc.nextInt();
+			switch(choice)
+			{
+			case 1: 
+				System.out.println("Customer Profile");
+				break;
+			case 2:
+				System.out.println("Enter a new password to change your old password");
+				break;
+			case 3: 
+				System.out.println("Edit Profile");
+				break;
+			case 4:
+				System.out.println("Delete customer");
+				break;
+			case 5: 
+				System.out.println("Logging off");
+				flag = false;
+				break;
+
+			}
+		}while(flag);
 	}
 
 }

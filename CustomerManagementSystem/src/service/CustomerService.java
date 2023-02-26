@@ -2,14 +2,20 @@ package service;
 
 import java.util.List;
 
+import database.CustomerDBConnection;
 import database.CustomerDatabase;
 import model.Customer;
 
 public class CustomerService {
 
-	private CustomerDatabase customerDatabase ;
+	//private CustomerDatabase customerDatabase ;
+	private CustomerDBConnection customerDatabase ;
 
-	public CustomerService(CustomerDatabase customerDatabase) {
+//	public CustomerService(CustomerDatabase customerDatabase) {
+//		// TODO Auto-generated constructor stub
+//		this.customerDatabase = customerDatabase;
+//	}
+	public CustomerService(CustomerDBConnection customerDatabase) {
 		// TODO Auto-generated constructor stub
 		this.customerDatabase = customerDatabase;
 	}
