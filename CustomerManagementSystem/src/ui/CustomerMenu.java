@@ -144,7 +144,6 @@ public class CustomerMenu {
 		boolean flag = true;
 		do {
 			System.out.println("\n ********** Customer dashboard ********** \n");
-
 			customerMenu();
 			int choice = sc.nextInt();
 			switch(choice)
@@ -162,7 +161,6 @@ public class CustomerMenu {
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-				
 				break;
 			case 2:
 				System.out.println("Enter a new password to change your old password");
