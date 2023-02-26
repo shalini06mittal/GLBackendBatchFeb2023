@@ -150,16 +150,62 @@ public class CustomerMenu {
 			switch(choice)
 			{
 			case 1: 
+				// can i assume the customer is already logged in
 				System.out.println("Customer Profile");
+				Customer customer;
+				try {
+					customer = customerService.getCustomerByEmail(email);
+					System.out.println("Name "+customer.getCustname());
+					System.out.println("City "+customer.getCity());
+					System.out.println("Phone "+customer.getPhone());
+					System.out.println("Email "+email);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+				
 				break;
 			case 2:
 				System.out.println("Enter a new password to change your old password");
+				String pwd = sc.next();
+				try {
+					customerService.changePassword(email, pwd);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 3: 
 				System.out.println("Edit Profile");
+				System.out.println("Enter your name");
+				String name= sc.next();
+				System.out.println("Enter your city");
+				String city = sc.next();
+				System.out.println("enter your phone");
+				String phone = sc.next();
+				Customer c1 = new Customer();
+				c1.setCity(city);
+				c1.setPhone(phone);
+				c1.setCustname(name);
+				c1.setEmail(email);
+				try {
+					customerService.updateCustomer(c1);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 4:
 				System.out.println("Delete customer");
+				System.out.println("Are you sure you want to delete your account?");
+				System.out.println("Enter Yes/yes to delete or cancel");
+				String shouldDelete = sc.next();
+				if(shouldDelete.equalsIgnoreCase("Yes"))
+				{
+					try {
+						customerService.deleteCustomer(email);
+						flag = false;
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
 				break;
 			case 5: 
 				System.out.println("Logging off");

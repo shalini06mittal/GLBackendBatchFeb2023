@@ -35,8 +35,7 @@ public class CustomerService {
 
 		} catch (Exception e) {
 			// lint errors
-			e.printStackTrace();
-			return false;
+			throw new Exception(e.getMessage());
 		}
 		return true;
 	}
@@ -56,5 +55,32 @@ public class CustomerService {
 			throw new Exception("email cannot be empty or null");
 		
 		return this.customerDatabase.login(email, password);
+	}
+	public boolean updateCustomer(Customer customer) throws Exception
+	{
+		try {
+			this.customerDatabase.updateCustomer(customer);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return true;
+	}
+	public boolean deleteCustomer(String email) throws Exception
+	{
+		try {
+			this.customerDatabase.deleteCustomer(email);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return true;
+	}
+	public boolean changePassword(String email, String newPassword) throws Exception
+	{
+		try {
+			this.customerDatabase.updatePassword(newPassword, email);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return true;
 	}
 }
