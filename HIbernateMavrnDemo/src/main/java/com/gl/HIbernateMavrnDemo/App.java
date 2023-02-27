@@ -18,8 +18,6 @@ import com.gl.HIbernateMavrnDemo.config.HibernateConfig;
  *4. mapping of java class with database table => need a class and add annotations
  *5. add <mapping> tag for your class in hibernate.cfg.xml file
  *6. load the configuration file => hibernateConfig.java
- *
- *
  */
 public class App 
 {
