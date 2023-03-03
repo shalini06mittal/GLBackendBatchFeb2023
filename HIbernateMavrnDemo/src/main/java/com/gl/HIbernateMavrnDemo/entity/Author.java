@@ -19,6 +19,8 @@ public class Author {
 	@Column(name="authorname", length = 120, nullable = false)
 	private String name;
 	private String genre;
+	@Column(nullable = true)
+	private int year;
 	
 	public Author() {
 		// TODO Auto-generated constructor stub
@@ -30,6 +32,12 @@ public class Author {
 		this.genre = genre;
 	}
 
+	public Author(String name, String genre, int year) {
+		super();
+		this.name = name;
+		this.genre = genre;
+		this.year = year;
+	}
 	public int getAid() {
 		return aid;
 	}
@@ -56,7 +64,7 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return "Author [aid=" + aid + ", name=" + name + ", genre=" + genre + "]";
+		return "Author [aid=" + aid + ", name=" + name + ", genre=" + genre + ", year=" + year + "]";
 	}
 	
 }

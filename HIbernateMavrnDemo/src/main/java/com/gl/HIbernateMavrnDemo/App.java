@@ -107,10 +107,10 @@ public class App
     public static List<Author> getAllAuthors()
     {
     	Session session = factory.openSession();
-    	List<Author> authors = session.createQuery("select a from Author a", Author.class).getResultList();
+    	// from Author [ java class ]
+    	List<Author> authors = session.createQuery("from Author", Author.class).getResultList();
+    	//List<Author> authors = session.createQuery("select a from Author a", Author.class).getResultList();
     	session.close();
     	return authors;
     }
-    
-    
 }
