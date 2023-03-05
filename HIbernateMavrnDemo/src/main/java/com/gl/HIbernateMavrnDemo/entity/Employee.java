@@ -1,11 +1,26 @@
 package com.gl.HIbernateMavrnDemo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="employee")
 public class Employee {
 
+	@Id
     private String email;
-    private  String empname;
+    private String empname;
     private String phone;
-
+    
+    // unidirectional
+    @OneToOne
+    @JoinColumn(name="identity_id")
+    // default <propertyname_id>
+    private Identification identification;
+    
     public Employee() {
     }
 
@@ -39,7 +54,16 @@ public class Employee {
         this.phone = phone;
     }
 
-    @Override
+    
+    public Identification getIdentification() {
+		return identification;
+	}
+
+	public void setIdentification(Identification identification) {
+		this.identification = identification;
+	}
+
+	@Override
     public String toString() {
         return "Employee{" +
                 "email='" + email + '\'' +

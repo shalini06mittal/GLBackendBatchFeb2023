@@ -15,6 +15,8 @@
 		 -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Author"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Employee"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Identification"></mapping>
 		<!-- <mapping resource="author.hbm.xml"></mapping> -->
 	</session-factory>
 </hibernate-configuration>

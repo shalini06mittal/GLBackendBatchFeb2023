@@ -38,79 +38,99 @@ import com.gl.HIbernateMavrnDemo.entity.Author;
 public class App 
 {
 	private static SessionFactory factory = HibernateConfig.getSessionFactory();
-    public static void main( String[] args )
-    {
-        Author a1 = new Author("Daniel", "Kids");
-//        System.out.println(a1);
-//        System.out.println(insertAuthor(a1));
-//        System.out.println(a1);
-        a1.setName("John Daniels");
-        a1.setAid(4);
-        System.out.println(a1);
-       // System.out.println(updateAuthor(a1));
-      //  deleteAuthor(a1);
-        System.out.println(getAuthorById(2));
-        
-        for(Author author : getAllAuthors())
-        {
-        	System.out.println(author);
-        }
-    }
-    // save or persist
-    public static int insertAuthor(Author author)
-    {
-    	// Create a session
-    	// DML commit => transaction
-    	Session session = factory.openSession();
-    	Transaction tx = session.beginTransaction();
-    	session.persist(author);
-    	tx.commit();
-    	session.close();
-    	return author.getAid();
-    }
-    /*
-     * 3 states of an object
-     * 1. transient => newly created
-     * 2. persistent => save
-     * 3. detached => after you close the seesion
-     * merge and update
-     */
-    public static Author updateAuthor(Author author)
-    {
-    	// Create a session
-    	// DML commit => transaction
-    	Session session = factory.openSession();
-    	Transaction tx = session.beginTransaction();
-    	Author updatedAuthor = session.merge(author);
-    	tx.commit();
-    	session.close();
-    	return updatedAuthor;
-    }
-    // remove and delete
-    public static void deleteAuthor(Author author)
-    {
-    	// Create a session
-    	// DML commit => transaction
-    	Session session = factory.openSession();
-    	Transaction tx = session.beginTransaction();
-    	session.remove(author);
-    	tx.commit();
-    	session.close();
-    }
-    public static Author getAuthorById(int authorid)
-    {
-    	Session session = factory.openSession();
-    	Author author = session.get(Author.class, authorid);
-    	session.close();
-    	return author;
-    }
-    public static List<Author> getAllAuthors()
-    {
-    	Session session = factory.openSession();
-    	// from Author [ java class ]
-    	List<Author> authors = session.createQuery("from Author", Author.class).getResultList();
-    	//List<Author> authors = session.createQuery("select a from Author a", Author.class).getResultList();
-    	session.close();
-    	return authors;
-    }
+	public static void main( String[] args )
+	{
+		Author a1 = new Author("Daniel", "Kids");
+		//        System.out.println(a1);
+		//        System.out.println(insertAuthor(a1));
+		//        System.out.println(a1);
+		a1.setName("John Daniels");
+		a1.setAid(4);
+		//  System.out.println(a1);
+		// System.out.println(updateAuthor(a1));
+		//  deleteAuthor(a1);
+		//get returns null for the id that does not exist
+		Author author = getAuthorById(200);
+//		System.out.println(author.getAid());
+//		System.out.println(author.getClass().getName());
+		System.out.println("********");
+		// load throws an exception for the object if it does not exists
+		Author proxy = loadAuthorById(2000);
+		System.out.println(proxy.getAid());
+		System.out.println(proxy.getClass().getName());
+	//	System.out.println(proxy.getName());
+
+		//        for(Author author : getAllAuthors())
+		//        {
+		//        	System.out.println(author);
+		//        }
+	}
+	// save or persist
+	public static int insertAuthor(Author author)
+	{
+		// Create a session
+		// DML commit => transaction
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(author);
+		tx.commit();
+		session.close();
+		return author.getAid();
+	}
+	/*
+	 * 3 states of an object
+	 * 1. transient => newly created
+	 * 2. persistent => save
+	 * 3. detached => after you close the seesion
+	 * merge and update
+	 */
+	public static Author updateAuthor(Author author)
+	{
+		// Create a session
+		// DML commit => transaction
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		Author updatedAuthor = session.merge(author);
+		tx.commit();
+		session.close();
+		return updatedAuthor;
+	}
+	// remove and delete
+	public static void deleteAuthor(Author author)
+	{
+		// Create a session
+		// DML commit => transaction
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.remove(author);
+		tx.commit();
+		session.close();
+	}
+	public static Author getAuthorById(int authorid)
+	{
+		Session session = factory.openSession();
+		Author author = session.get(Author.class, authorid);
+		session.close();
+		return author;
+	}
+	public static Author loadAuthorById(int authorid)
+	{
+		Session session = factory.openSession();
+		Author author = new Author();
+
+		author = session.load(Author.class, authorid);
+
+		session.close();
+		return author;
+	}
+
+	public static List<Author> getAllAuthors()
+	{
+		Session session = factory.openSession();
+		// from Author [ java class ]
+		List<Author> authors = session.createQuery("from Author", Author.class).getResultList();
+		//List<Author> authors = session.createQuery("select a from Author a", Author.class).getResultList();
+		session.close();
+		return authors;
+	}
 }
