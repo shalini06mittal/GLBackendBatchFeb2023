@@ -18,6 +18,8 @@
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Employee"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Identification"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Student"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Product"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Store"></mapping>
 		<!-- <mapping resource="author.hbm.xml"></mapping> -->
 	</session-factory>
 </hibernate-configuration>
