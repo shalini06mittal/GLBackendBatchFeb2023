@@ -27,7 +27,7 @@ public class AppOneToOne
     	session.close();
     	System.out.println(ob.getBdate());
     	System.out.println(ob.getFullname());
-    	System.out.println(ob.getEmp().getEmail());
+    	System.out.println(ob.getEmployee().getEmail());
     	
     	
     	

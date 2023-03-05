@@ -15,7 +15,7 @@ public class Identification {
 	private String bdate;
 	// for bidirectional mapping
 	@OneToOne(mappedBy = "identification")
-	private Employee emp;
+	private Employee employee;
 	public String getId() {
 		return id;
 	}
@@ -34,11 +34,11 @@ public class Identification {
 	public void setBdate(String bdate) {
 		this.bdate = bdate;
 	}
-	public Employee getEmp() {
-		return emp;
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmp(Employee emp) {
-		this.emp = emp;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	
