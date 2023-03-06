@@ -17,7 +17,7 @@ public class Employee {
     private String phone;
     
     // unidirectional
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="identity_id")
     // default <propertyname_id>
     private Identification identification;

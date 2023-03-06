@@ -20,7 +20,7 @@ public class Product {
 	private String description;
 	private double price;
 	
-	@ManyToOne 
+	@ManyToOne (cascade = CascadeType.REFRESH)
 	@JoinColumn(name="storeid")
 	private Store store;
 	

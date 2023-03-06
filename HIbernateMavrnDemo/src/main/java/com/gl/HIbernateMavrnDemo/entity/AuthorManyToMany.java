@@ -1,38 +1,47 @@
 package com.gl.HIbernateMavrnDemo.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 // author is a database managed entity
 @Entity
 @Table(name = "author_m2m") // optional
-public class Author {
+public class AuthorManyToMany {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "authorid")
 	private int aid;
-	@Column(name="authorname", length = 120, nullable = false)
 	private String name;
 	private String genre;
-	@Column(nullable = true)
 	private int year;
+	@ManyToMany
+	@JoinTable(name="author_books", 
+	joinColumns = @JoinColumn(name="authorid"),
+	inverseJoinColumns = @JoinColumn(name="bookid")
+			)
+	private List<Book> books;
 	
-	public Author() {
+	public AuthorManyToMany() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(String name, String genre) {
+	public AuthorManyToMany(String name, String genre) {
 		super();
 		this.name = name;
 		this.genre = genre;
 	}
 
-	public Author(String name, String genre, int year) {
+	public AuthorManyToMany(String name, String genre, int year) {
 		super();
 		this.name = name;
 		this.genre = genre;

@@ -21,6 +21,8 @@
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Student"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Product"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Store"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Book"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.AuthorManyToMany"></mapping>
 		<!-- <mapping resource="author.hbm.xml"></mapping> -->
 	</session-factory>
 </hibernate-configuration>

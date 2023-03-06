@@ -25,6 +25,7 @@ public class AppOneToMany
 		
 		List<Product> products = new ArrayList<Product>();
 		Product p1 = new Product();
+		p1.setPid(24);
 		p1.setPname("Laptop");
 		p1.setPrice(75000);
 		p1.setDescription("Windows MAC OSX");
@@ -34,6 +35,7 @@ public class AppOneToMany
 		
 		p1 = new Product();
 		p1.setPname("Keyboard");
+		p1.setPid(25);
 		p1.setPrice(18000);
 		p1.setDescription("Sony wireless Keyboard");
 		p1.setStore(s1);
@@ -45,13 +47,25 @@ public class AppOneToMany
 		//p1.setPid(3);
 		
 		Session session = factory.openSession();
-		Transaction tx = session.beginTransaction();
-//		for(Product p : products)
-//			session.save(p);
-		session.remove(s1);
+//		Transaction tx = session.beginTransaction();
+////		for(Product p : products)
+////			session.save(p);
+//		session.remove(s1);
+//		
+//		//session.persist(s1);
+//		tx.commit();
+//		session.close();
 		
-		//session.persist(s1);
-		tx.commit();
+		/**
+		 * onetoone => 
+		 */
+		session = factory.openSession();
+		
+		Store store = session.get(Store.class, "S001");
+		store.getProducts();
 		session.close();
+		System.out.println(store .getStorename());
+		for(Product prod : store.getProducts())
+			System.out.println(prod.getPid());
 	}
 }
