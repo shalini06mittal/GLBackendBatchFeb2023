@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 import com.gl.HIbernateMavrnDemo.config.HibernateConfig;
 import com.gl.HIbernateMavrnDemo.entity.Author;
 
+// Arin Kumar : 10th March 2023
+
 /**
  *1. Create maven project - quickstart
  *		archetype - templates

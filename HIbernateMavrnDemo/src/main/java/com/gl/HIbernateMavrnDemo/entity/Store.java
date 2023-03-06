@@ -2,6 +2,7 @@ package com.gl.HIbernateMavrnDemo.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,8 +18,8 @@ public class Store {
 	private String storename;
 	
 	// unidirectional
-	@OneToMany
-	@JoinColumn(name="storeid")
+	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "store")
+	//@JoinColumn(name="storeid")
 	private List<Product> products;
 	
 	public String getStoreid() {

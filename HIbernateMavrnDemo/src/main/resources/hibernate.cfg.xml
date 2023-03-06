@@ -13,6 +13,7 @@
 		<!-- create will drop the table if it exists and recreate
 			update will check if table exists will not recreate
 		 -->
+		 <property name="org.hibernate.sql">off</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Author"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Employee"></mapping>

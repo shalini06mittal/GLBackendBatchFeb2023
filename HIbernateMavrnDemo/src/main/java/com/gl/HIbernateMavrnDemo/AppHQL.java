@@ -2,6 +2,8 @@
 package com.gl.HIbernateMavrnDemo;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,8 +19,10 @@ public class AppHQL
 	private static SessionFactory factory = HibernateConfig.getSessionFactory();
     public static void main( String[] args )
     {
+    	org.apache.log4j.Logger.getLogger("net.sf.hibernate").setLevel(org.apache.log4j.Level.OFF);
     	// 1. where clause
     	Session session = factory.openSession();
+    	
     	List<Author> authors ;
 //    	= session.createQuery("from Author where genre=:genre and year=:year",
 //    			Author.class)
@@ -47,10 +51,14 @@ public class AppHQL
 //    		System.out.println(author);
     	
     	session = factory.openSession();
-    	long count  = session.createQuery("select count(*) from Author",
-    			Long.class).uniqueResult();
+    	Transaction tx = session.beginTransaction();
+//    	long count  = session.createQuery("select count(*) from Author",
+//    			Long.class).uniqueResult();
+    	session.createQuery("delete from Author where aid=:aid")
+    	.setParameter("aid", 5).executeUpdate();
+    	tx.commit();
     	session.close();
-    	System.out.println(count);
+    	
     	
     	
     }

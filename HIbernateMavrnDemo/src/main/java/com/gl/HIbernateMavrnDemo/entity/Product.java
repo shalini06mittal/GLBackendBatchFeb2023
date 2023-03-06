@@ -1,9 +1,12 @@
 package com.gl.HIbernateMavrnDemo.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +19,10 @@ public class Product {
 	private String pname;
 	private String description;
 	private double price;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="storeid")
+	private Store store;
 	
 	public int getPid() {
 		return pid;
