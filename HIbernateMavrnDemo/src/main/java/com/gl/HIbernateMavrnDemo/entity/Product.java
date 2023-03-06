@@ -20,7 +20,7 @@ public class Product {
 	private String description;
 	private double price;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne 
 	@JoinColumn(name="storeid")
 	private Store store;
 	
@@ -47,6 +47,12 @@ public class Product {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public Store getStore() {
+		return store;
+	}
+	public void setStore(Store store) {
+		this.store = store;
 	}
 	
 	

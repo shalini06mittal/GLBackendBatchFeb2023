@@ -19,24 +19,28 @@ public class AppOneToMany
 	private static SessionFactory factory = HibernateConfig.getSessionFactory();
 	public static void main( String[] args )
 	{
+		Store s1 = new Store();
+		s1.setStoreid("S006");
+		s1.setStorename("Chroma Hyderabad");
+		
 		List<Product> products = new ArrayList<Product>();
 		Product p1 = new Product();
 		p1.setPname("Laptop");
 		p1.setPrice(75000);
 		p1.setDescription("Windows MAC OSX");
+		p1.setStore(s1);
 
 		products.add(p1);
+		
 		p1 = new Product();
 		p1.setPname("Keyboard");
 		p1.setPrice(18000);
 		p1.setDescription("Sony wireless Keyboard");
-
+		p1.setStore(s1);
+		
 		products.add(p1);
 		
-		Store s1 = new Store();
 		s1.setProducts(products);
-		s1.setStoreid("S003");
-		s1.setStorename("Chroma Hyderabad");
 		
 		//p1.setPid(3);
 		
@@ -44,9 +48,9 @@ public class AppOneToMany
 		Transaction tx = session.beginTransaction();
 //		for(Product p : products)
 //			session.save(p);
-		//session.remove(s1);
+		session.remove(s1);
 		
-		session.persist(s1);
+		//session.persist(s1);
 		tx.commit();
 		session.close();
 	}

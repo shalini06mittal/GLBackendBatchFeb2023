@@ -18,7 +18,7 @@ public class Store {
 	private String storename;
 	
 	// unidirectional
-	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "store")
+	@OneToMany(cascade = { CascadeType.ALL}, mappedBy = "store")
 	//@JoinColumn(name="storeid")
 	private List<Product> products;
 	
