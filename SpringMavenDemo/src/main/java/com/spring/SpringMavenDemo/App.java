@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.SpringMavenDemo.entity.Author;
+import com.spring.SpringMavenDemo.entity.Book;
 
 /**
  * 1. Quickstart maven project
@@ -28,11 +29,24 @@ public class App
 //        Author author = context.getBean(Author.class);
 //        System.out.println(author);
         
+        // by default spring creates single instance of a bean
+        // singleton pattern
         Author author1 = (Author) context.getBean("a1");
-        System.out.println(author1);
+        System.out.println("1: "+author1.getAname());
         
-        Author author2 = (Author) context.getBean("a2");
-        System.out.println(author2);
+        Author author11 = (Author) context.getBean("a1");
+        System.out.println("2: "+author11.getAname());
+        
+        author1.setAname("Amith Singh");
+        System.out.println("3: "+author1.getAname());
+        System.out.println("4: "+author11.getAname());
+        
+        
+        Book book = context.getBean(Book.class);
+        System.out.println(book);
+        
+//        Author author2 = (Author) context.getBean("a2");
+//        System.out.println(author2);
         
     }
 }
