@@ -23,6 +23,7 @@
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Store"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.Book"></mapping>
 		<mapping class="com.gl.HIbernateMavrnDemo.entity.AuthorManyToMany"></mapping>
+		<mapping class="com.gl.HIbernateMavrnDemo.entity.Users"></mapping>
 		<mapping class="com.inheritance.EmployeeTPC"></mapping>
 		<mapping class="com.inheritance.PermanentEmployeeTPC"></mapping>
 		<mapping class="com.inheritance.TemporaryEmployeeTPC"></mapping>
