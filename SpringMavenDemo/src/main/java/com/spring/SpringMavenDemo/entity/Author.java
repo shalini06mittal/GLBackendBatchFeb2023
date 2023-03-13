@@ -1,12 +1,17 @@
 package com.spring.SpringMavenDemo.entity;
 
-// DI => constrcutor
-// 2 setters
-// field => annotations
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Author {
 
+	//field injection
+	@Value("111")
 	private int aid;
+	@Value("Pranay")
 	private String aname;
+	@Value("suspense")
 	private String genre;
 	
 	public Author() {

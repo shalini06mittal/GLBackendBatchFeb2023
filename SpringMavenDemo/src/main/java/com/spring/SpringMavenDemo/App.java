@@ -1,5 +1,6 @@
 package com.spring.SpringMavenDemo;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,11 +21,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+       
         // create the spring applciation context and load all the beans
         // specified in the xml file and instantiate them
+        // when are the beans loaded
+    	// BeanFactory factory = new lazy loading
+    	
         ApplicationContext context =
         		new ClassPathXmlApplicationContext("spring.xml");
+        System.out.println( "Hello World!" );
         // ambiguity which Author?
 //        Author author = context.getBean(Author.class);
 //        System.out.println(author);

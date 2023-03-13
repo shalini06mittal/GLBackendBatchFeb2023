@@ -1,14 +1,25 @@
 package com.spring.SpringMavenDemo.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Book {
 
-	
+	@Value("1")
 	private int bid;
+	@Value("HTML5")
 	private String bname;
+	@Value("797.56")
 	private double price;
 
+	@Autowired
 	private Author author;
 	
+	public Book() {
+		System.out.println("Book default constructor");
+	}
 	public int getBid() {
 		return bid;
 	}
