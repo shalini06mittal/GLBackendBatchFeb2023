@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.spring.SpringMavenDemo.band.Singer;
 import com.spring.SpringMavenDemo.entity.Author;
 import com.spring.SpringMavenDemo.entity.Book;
 
@@ -29,6 +30,9 @@ public class AppAnnotationJavaBasedConfig
         
         Book b1 = context.getBean(Book.class);
         System.out.println(b1);
+        
+        Singer ob = context.getBean(Singer.class);
+        ob.details();
         
     }
 }
