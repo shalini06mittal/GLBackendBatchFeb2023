@@ -4,7 +4,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.spring.SpringMavenDemo.entity.Author;
+import com.spring.SpringMavenDemo.entity.AuthorEntity;
 import com.spring.SpringMavenDemo.entity.Book;
 
 /**
@@ -36,10 +36,10 @@ public class App
         
         // by default spring creates single instance of a bean
         // singleton pattern
-        Author author1 = (Author) context.getBean("a1");
+        AuthorEntity author1 = (AuthorEntity) context.getBean("a1");
         System.out.println("1: "+author1.getAname());
         
-        Author author11 = (Author) context.getBean("a1");
+        AuthorEntity author11 = (AuthorEntity) context.getBean("a1");
         System.out.println("2: "+author11.getAname());
         
         author1.setAname("Amith Singh");

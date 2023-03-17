@@ -8,12 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.SpringMavenDemo.band.Singer;
-import com.spring.SpringMavenDemo.entity.Author;
+import com.spring.SpringMavenDemo.entity.AuthorEntity;
 import com.spring.SpringMavenDemo.entity.Book;
 
-
-@Configuration // (represents spring configuration)
-@ComponentScan
+//@Configuration // (represents spring configuration)
+//@ComponentScan
 public class AppAnnotationJavaBasedConfig 
 {
     public static void main( String[] args )
@@ -23,16 +22,21 @@ public class AppAnnotationJavaBasedConfig
 //        		new ClassPathXmlApplicationContext("spring-anno.xml");
     	
     	AnnotationConfigApplicationContext context
-    	= new AnnotationConfigApplicationContext(AppAnnotationJavaBasedConfig.class);
+    	= new AnnotationConfigApplicationContext(AppConfig.class);
         
-        Author a1 = context.getBean(Author.class);
-        System.out.println(a1);
-        
-        Book b1 = context.getBean(Book.class);
-        System.out.println(b1);
-        
-        Singer ob = context.getBean(Singer.class);
-        ob.details();
+    	for(String bean : context.getBeanDefinitionNames())
+    	{
+    		System.out.println(bean);
+    	}
+    	
+//    	  AuthorEntity a1 = (AuthorEntity) context.getBean("auth");
+//        System.out.println(a1);
+//        
+//        Book b1 = context.getBean(Book.class);
+//        System.out.println(b1);
+//        
+//        Singer ob = context.getBean(Singer.class);
+//        ob.details();
         
     }
 }

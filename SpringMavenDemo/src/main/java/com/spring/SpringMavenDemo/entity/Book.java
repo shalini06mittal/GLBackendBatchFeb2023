@@ -15,7 +15,7 @@ public class Book {
 	private double price;
 
 	@Autowired
-	private Author author;
+	private AuthorEntity author;
 	
 	public Book() {
 		System.out.println("Book default constructor");
@@ -38,10 +38,10 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Author getAuthor() {
+	public AuthorEntity getAuthor() {
 		return author;
 	}
-	public void setAuthor(Author author) {
+	public void setAuthor(AuthorEntity author) {
 		this.author = author;
 	}
 	@Override
