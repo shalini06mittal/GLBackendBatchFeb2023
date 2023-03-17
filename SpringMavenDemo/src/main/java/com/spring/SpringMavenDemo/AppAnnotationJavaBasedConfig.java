@@ -11,6 +11,7 @@ import com.spring.SpringMavenDemo.band.Singer;
 import com.spring.SpringMavenDemo.entity.AuthorEntity;
 import com.spring.SpringMavenDemo.entity.Book;
 import com.spring.SpringMavenDemo.entity.CollDemo;
+import com.spring.SpringMavenDemo.events.EmployeePublisher;
 
 //@Configuration // (represents spring configuration)
 //@ComponentScan
@@ -24,6 +25,8 @@ public class AppAnnotationJavaBasedConfig
     	
     	AnnotationConfigApplicationContext context
     	= new AnnotationConfigApplicationContext(AppConfig.class);
+    	
+    	
         
 //    	for(String bean : context.getBeanDefinitionNames())
 //    	{
@@ -31,18 +34,27 @@ public class AppAnnotationJavaBasedConfig
 //    	}
     	
     	CollDemo demo = context.getBean(CollDemo.class);
-    	System.out.println(demo.getAuthors());
-    	System.out.println(demo.getFruits());
-    	System.out.println(demo.getIds());
-    	System.out.println(demo.getMap());
+//    	System.out.println(demo.getAuthors());
+//    	System.out.println(demo.getFruits());
+//    	System.out.println(demo.getIds());
+//    	System.out.println(demo.getMap());
 //    	  AuthorEntity a1 = (AuthorEntity) context.getBean("auth");
 //        System.out.println(a1);
 //        
-	        Book b1 = context.getBean(Book.class);
-	        System.out.println(b1);
+//	        Book b1 = context.getBean(Book.class);
+//	        System.out.println(b1);
+//	        
+//	        MyAppContext app = context.getBean(MyAppContext.class);
+//	        app.m1();
 //        
 //        Singer ob = context.getBean(Singer.class);
 //        ob.details();
+	        
+	        
+	        // event listener
+	        EmployeePublisher publisher = context.getBean(EmployeePublisher.class);
+	        publisher.createNewEmployee();
+	        context.registerShutdownHook();
         
     }
 }
