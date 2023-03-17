@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.spring.SpringMavenDemo.band.Singer;
 import com.spring.SpringMavenDemo.entity.AuthorEntity;
 import com.spring.SpringMavenDemo.entity.Book;
+import com.spring.SpringMavenDemo.entity.CollDemo;
 
 //@Configuration // (represents spring configuration)
 //@ComponentScan
@@ -24,16 +25,21 @@ public class AppAnnotationJavaBasedConfig
     	AnnotationConfigApplicationContext context
     	= new AnnotationConfigApplicationContext(AppConfig.class);
         
-    	for(String bean : context.getBeanDefinitionNames())
-    	{
-    		System.out.println(bean);
-    	}
+//    	for(String bean : context.getBeanDefinitionNames())
+//    	{
+//    		System.out.println(bean);
+//    	}
     	
+    	CollDemo demo = context.getBean(CollDemo.class);
+    	System.out.println(demo.getAuthors());
+    	System.out.println(demo.getFruits());
+    	System.out.println(demo.getIds());
+    	System.out.println(demo.getMap());
 //    	  AuthorEntity a1 = (AuthorEntity) context.getBean("auth");
 //        System.out.println(a1);
 //        
-//        Book b1 = context.getBean(Book.class);
-//        System.out.println(b1);
+	        Book b1 = context.getBean(Book.class);
+	        System.out.println(b1);
 //        
 //        Singer ob = context.getBean(Singer.class);
 //        ob.details();

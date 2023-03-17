@@ -3,7 +3,7 @@ package com.spring.SpringMavenDemo.entity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component("author")
+//@Component("author")
 public class AuthorEntity {
 
 	//field injection
