@@ -24,7 +24,7 @@ public class EmployeePublisher{// implements ApplicationEventPublisherAware{
     	System.out.println("publish create new employee");
         Employee employee =  employeeDAO.createNewEmployee();         
         //publishing the veent here
-        publisher.publishEvent(new EmployeeEvent(this, "ADD", employee));
+        publisher.publishEvent(new 	(this, "ADD", employee));
          
         return employee;
     }
