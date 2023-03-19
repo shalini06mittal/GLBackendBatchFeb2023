@@ -6,18 +6,19 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployeePublisher implements ApplicationEventPublisherAware{
+public class EmployeePublisher{// implements ApplicationEventPublisherAware{
 
 	@Autowired
 	private EmployeeDAO employeeDAO;
+	@Autowired
 	private ApplicationEventPublisher publisher;
 	
-	@Override
-	public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-		// TODO Auto-generated method stub
-		this.publisher = applicationEventPublisher;
-		
-	}
+//	@Override
+//	public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+//		// TODO Auto-generated method stub
+//		this.publisher = applicationEventPublisher;
+//		
+//	}
 	public Employee createNewEmployee()
     {
     	System.out.println("publish create new employee");

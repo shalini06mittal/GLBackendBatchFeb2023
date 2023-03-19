@@ -1,12 +1,13 @@
 package com.spring.SpringMavenDemo.events;
 
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployeeEventListener implements ApplicationListener<EmployeeEvent> {
+public class EmployeeEventListener{// implements ApplicationListener<EmployeeEvent> {
 
-	@Override
+	@EventListener
 	public void onApplicationEvent(EmployeeEvent event) {
 		System.out.println("\n****************\n");
 		System.out.println(event.getEventType());
@@ -15,6 +16,4 @@ public class EmployeeEventListener implements ApplicationListener<EmployeeEvent>
 		System.out.println("\n****************\n");
 		// sending a notification
 	}
-
-	
 }
