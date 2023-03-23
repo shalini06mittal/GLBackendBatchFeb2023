@@ -3,6 +3,7 @@ package com.spring.jdbc;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.spring.jdbc.database.CustomerDB;
+import com.spring.jdbc.database.CustomerHibernateDB;
 import com.spring.jdbc.entity.Customer;
 
 /**
@@ -43,32 +44,49 @@ public class App
         c1.setPassword("sh");
         c1.setPhone("9999999999");
         
-        System.out.println("\n***** INSERT *******\n");
+//        System.out.println("\n***** INSERT *******\n");
+//        try {
+//			System.out.println(cdb.insertCustomer(c1));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        
+//        System.out.println("\n***** INSERT SAME RECORD *******\n");
+//        try {
+//			System.out.println(cdb.insertCustomer(c1));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+        
+//        System.out.println("\n***** ALl Customers *******\n");
+//        for(Customer c : cdb.getCustomers())
+//        	System.out.println(c);
+//        
+//        System.out.println("\n***** DELETE *******\n");
+//        try {
+//			System.out.println(cdb.deleteCustomer("cd@g.c"));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        System.out.println("\n***** HIBERNATE *******\n");
+        CustomerHibernateDB db = context.getBean(CustomerHibernateDB.class);
+        
+         c1 = new Customer();
+        c1.setEmail("nalini@gmail.com");
+        c1.setCustname("Denisa ");
+        c1.setCity("Nagpur");
+        c1.setPassword("denisa");
+        c1.setPhone("9876543456");
+        
         try {
-			System.out.println(cdb.insertCustomer(c1));
+			db.insertCustomer(c1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
-        System.out.println("\n***** INSERT SAME RECORD *******\n");
-        try {
-			System.out.println(cdb.insertCustomer(c1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        System.out.println("\n***** ALl Customers *******\n");
-        for(Customer c : cdb.getCustomers())
-        	System.out.println(c);
-        
-        System.out.println("\n***** DELETE *******\n");
-        try {
-			System.out.println(cdb.deleteCustomer("cd@g.c"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 }

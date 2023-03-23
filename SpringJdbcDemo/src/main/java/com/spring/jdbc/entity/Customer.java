@@ -1,5 +1,8 @@
 package com.spring.jdbc.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +13,10 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @Data
+@Entity
 public class Customer {
 
+	@Id
 	private String email;
 	private String custname;
 	private String city;
