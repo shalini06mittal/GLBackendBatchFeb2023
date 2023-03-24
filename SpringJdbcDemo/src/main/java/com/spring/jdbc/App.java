@@ -18,24 +18,24 @@ public class App
         		new AnnotationConfigApplicationContext(AppConfig.class);
         
         CustomerDB cdb = context.getBean(CustomerDB.class);
-        System.out.println(cdb.getTemplate());
-        System.out.println("\n***** COUNT *******\n");
-        System.out.println(cdb.getCustomerCount());
-        Customer cust = cdb.getCustomerByEmail("ab@g.c");
-        System.out.println("\n***** Get By Email *******\n");
-        System.out.println(cust);
+//        System.out.println(cdb.getTemplate());
+//        System.out.println("\n***** COUNT *******\n");
+//        System.out.println(cdb.getCustomerCount());
+//        Customer cust = cdb.getCustomerByEmail("ab@g.c");
+//        System.out.println("\n***** Get By Email *******\n");
+//        System.out.println(cust);
         
-        cust.setCity("Noida");
-        cust.setPhone("1212121212");
-        cust.setCustname("Amit Kumar");
+//        cust.setCity("Noida");
+//        cust.setPhone("1212121212");
+//        cust.setCustname("Amit Kusmar");
         
-        System.out.println("\n***** UPDATE *******\n");
-        try {
-			System.out.println(cdb.updateCustomer(cust));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        System.out.println("\n***** UPDATE *******\n");
+//        try {
+//			System.out.println(cdb.updateCustomer(cust));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
         Customer c1 = new Customer();
         c1.setEmail("shalini@gmail.com");
@@ -75,11 +75,11 @@ public class App
         CustomerHibernateDB db = context.getBean(CustomerHibernateDB.class);
         
          c1 = new Customer();
-        c1.setEmail("nalini@gmail.com");
-        c1.setCustname("Denisa ");
-        c1.setCity("Nagpur");
-        c1.setPassword("denisa");
-        c1.setPhone("9876543456");
+        c1.setEmail("preeti@gmail.com");
+        c1.setCustname("Preeti Gupta");
+        c1.setCity("Patna");
+        c1.setPassword("preeti");
+        c1.setPhone("0925426378");
         
         try {
 			db.insertCustomer(c1);
