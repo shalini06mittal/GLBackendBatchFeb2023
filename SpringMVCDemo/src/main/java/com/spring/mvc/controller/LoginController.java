@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.mvc.dto.LoginDTO;
+
 @Controller
 public class LoginController {
 
@@ -37,14 +39,13 @@ public class LoginController {
 	
 	//@RequestMapping(path = "/login", method = RequestMethod.POST)
 	@PostMapping("/login")
-	public String loginPOstPage(@RequestParam String email,
-			@RequestParam String password, HttpServletRequest request)
+	public String loginPOstPage(LoginDTO dto, HttpServletRequest request)
 	{
 		// POST
 		System.out.println("login request "+request.getMethod());
-		System.out.println("email "+email);
-		System.out.println("pwd "+password);
-		if(email.equals("sh@g.c") && password.equals("sh"))
+		System.out.println("email "+dto.getEmail());
+		System.out.println("pwd "+dto.getPassword());
+		if(dto.getEmail().equals("sh@g.c") && dto.getPassword().equals("sh"))
 		{
 			// success
 			return "redirect:dashboard";
@@ -52,4 +53,21 @@ public class LoginController {
 		// failure => redirect (GET)
 		return "redirect:login";
 	}
+//	//@RequestMapping(path = "/login", method = RequestMethod.POST)
+//		@PostMapping("/login")
+//		public String loginPOstPage(@RequestParam String email,
+//				@RequestParam String password, HttpServletRequest request)
+//		{
+//			// POST
+//			System.out.println("login request "+request.getMethod());
+//			System.out.println("email "+email);
+//			System.out.println("pwd "+password);
+//			if(email.equals("sh@g.c") && password.equals("sh"))
+//			{
+//				// success
+//				return "redirect:dashboard";
+//			}
+//			// failure => redirect (GET)
+//			return "redirect:login";
+//		}
 }
