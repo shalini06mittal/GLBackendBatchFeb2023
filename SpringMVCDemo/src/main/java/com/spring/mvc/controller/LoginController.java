@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,17 +50,30 @@ public class LoginController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession session)
+	public String logout(HttpSession session,
+			HttpServletResponse resp,
+			HttpServletRequest request)
 	{
+		Cookie cookies[] = request.getCookies();
+		System.out.println(cookies.length);
+		for(Cookie cookie : cookies)
+		{
+			System.out.println(cookie.getName());
+			if(cookie.getName().equals("email"))
+				cookie.setMaxAge(0);
+			else if(cookie.getName().equals("JSESSIONID"))
+				cookie.setMaxAge(0);
+			resp.addCookie(cookie);
+		}
 		session.removeAttribute("email");
 		session.invalidate();
-		return "redirect:login";
+		return "redirect:index.jsp";
 	}
 	
 	//@RequestMapping(path = "/login", method = RequestMethod.POST)
 	@PostMapping("/login")
 	public String loginPOstPage(LoginDTO dto, HttpServletRequest request,
-			HttpSession session)
+			HttpSession session, HttpServletResponse resp)
 	{
 		// POST
 		System.out.println("login request "+request.getMethod());
@@ -67,7 +82,9 @@ public class LoginController {
 		try {
 			if(this.usersService.validateUser(dto))
 			{
+				Cookie cookie = new Cookie("email", dto.getEmail());
 				session.setAttribute("email", dto.getEmail());
+				resp.addCookie(cookie);
 				return "redirect:dashboard";
 			}
 		} catch (Exception e) {

@@ -57,9 +57,10 @@ p {
 					</li>
 					<li class="nav-item"><a class="nav-link" href="register">Register</a>
 					</li>
-					<%} %>
+					<%}else{ %>
 					<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
 					</li>
+					<%} %>
 					
 				</ul>
 			</div>
