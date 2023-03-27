@@ -16,6 +16,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
+	<link href="resources/css/login.css" rel="stylesheet" type="text/css">
 <style>
 .error {
 	color: red;
@@ -26,7 +27,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">CMS</a>
+			<a class="navbar-brand" href="index.jsp">CMS</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -39,7 +40,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
 					<%
-					String id = (String) session.getAttribute("id");
+					String id = (String) session.getAttribute("email");
 		
 					if (id == null) {
 					%>
@@ -63,10 +64,18 @@
 
 	<div class="container">
 		<div>
+		
 			<div class="wrapper fadeInDown">
 				<div id="formContent">
 					<div class="fadeIn first">
 						<h2 class='sign'>Sign In!</h2>
+						<div>
+						<span class='error'>
+							<c:if test="${error != null }">
+								${error }
+							</c:if>
+						</span>
+						</div>
 					</div>
 					<br />
 					<form action="login" method="POST">
@@ -76,7 +85,7 @@
 							placeholder="Password" /> <select>
 							<!--  JSP scriplets -->
 							<%-- <% 
-									List<String> roles = (List)request.getAttribute("roles");
+			 						List<String> roles = (List)request.getAttribute("roles");
 									for(String role:roles)
 									{
 								%>
