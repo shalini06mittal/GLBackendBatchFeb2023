@@ -31,4 +31,8 @@ public class TaskService {
 	{
 		return this.taskDatabase.addTask(task);
 	}
+	public boolean updateTask(Task task)
+	{
+		return this.taskDatabase.updateTask(task);
+	}
 }

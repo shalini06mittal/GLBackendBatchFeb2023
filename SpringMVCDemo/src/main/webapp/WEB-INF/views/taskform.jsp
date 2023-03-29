@@ -66,7 +66,6 @@
 		</div>
 	</nav>
 
-
 	<div class="container">
 		<form action="${pageContext.servletContext.contextPath }/admin/task"
 			method="POST">
@@ -76,17 +75,29 @@
 					<input type="text" class="form-control" name="taskid"
 						readonly="readonly" value="${task.taskid }">
 				</div>
+				<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Task ID</label>
+					<select class="form-select" name="email">
+						<option value="default">Assign To</option>
+						<c:forEach items="${emailids }" var="email">
+						
+							<option value="${email }" ${task.email == email ? 'selected' : ''  }>${email }</option>
+						</c:forEach>
+					</select>
+				</div>
 			</c:if>
 
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Task
 					Title</label> <input type="text" class="form-control" name="tasktitle"
+					value="${task.tasktitle }"
 					id="exampleInputEmail1" aria-describedby="emailHelp">
 
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Task Text</label>
 				<input type="text" class="form-control" name="tasktext"
+				value="${task.tasktext }"
 					id="exampleInputEmail1" aria-describedby="emailHelp">
 			</div>
 

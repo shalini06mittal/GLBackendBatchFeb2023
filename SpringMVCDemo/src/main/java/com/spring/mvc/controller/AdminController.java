@@ -40,7 +40,12 @@ public class AdminController {
 	{
 		System.out.println("insert");
 		System.out.println(task);
-		int taskid = this.taskService.insertTask(task);
+		int taskid = 0;
+		if(task.getTaskid()== 0 )
+		 taskid = this.taskService.insertTask(task);
+		else
+			if(this.taskService.updateTask(task))
+				return "redirect:/admin";
 		System.out.println(taskid+" inserted");
 		return "redirect:/admin";
 	}
@@ -51,16 +56,17 @@ public class AdminController {
 	}
 	@GetMapping("/edit/{taskid}")
 	public String editTask(@PathVariable int taskid,
-			Map<String, Task> map)
+			Map<String, Task> map, Map<String, List<String>> useremails)
 	{
 		Task task = null;
 		try {
 			 task = this.taskService.getTaskById(taskid);
 			 map.put("task", task);
+			 useremails.put("emailids", this.usersService.getAllUsersEmail());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:admin";
+			return "redirect:/admin";
 		}
 		return "taskform";	
 	}

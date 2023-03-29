@@ -19,7 +19,7 @@ public class UsersDatabase {
 	public List<Users> getAllUsers()
 	{
 		Session session = factory.openSession();
-		List<Users> users = session.createQuery("from Author", Users.class).getResultList();
+		List<Users> users = session.createQuery("from Users", Users.class).getResultList();
 		session.close();
 		return users;
 	}

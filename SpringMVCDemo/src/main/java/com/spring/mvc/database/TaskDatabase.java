@@ -40,4 +40,14 @@ public class TaskDatabase {
 		session.close();
 		return taskid;
 	}
+	public boolean updateTask(Task task)
+	{
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(task);
+		tx.commit();
+		
+		session.close();
+		return true;
+	}
 }

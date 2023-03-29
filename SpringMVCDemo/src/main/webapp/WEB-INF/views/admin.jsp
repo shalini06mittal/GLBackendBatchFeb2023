@@ -97,8 +97,8 @@
 							<td>NOT ASSIGNED</td>
 						</c:if>
 						<td>${task.email }</td>
-						<td><a href="admin/edit/${task.taskid }">Edit</a>
-						<a href="admin/delete/${task.taskid }"><i class="fa fa-trash"></i></a></td>
+						<td><a href="${pageContext.servletContext.contextPath }/admin/edit/${task.taskid }">Edit</a>
+						<a href="${pageContext.servletContext.contextPath }/admin/delete/${task.taskid }"><i class="fa fa-trash"></i></a></td>
 					</tr>
 				</c:forEach>
 
