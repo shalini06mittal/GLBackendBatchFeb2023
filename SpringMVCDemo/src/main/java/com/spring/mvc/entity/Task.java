@@ -1,11 +1,21 @@
 package com.spring.mvc.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Task {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int taskid;
 	private String tasktitle;
 	private String tasktext;
 	private boolean taskcompleted;
+	@Column(name="assignedTo")
 	private String email;
 	
 	public Task() {
@@ -56,6 +66,12 @@ public class Task {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Task [taskid=" + taskid + ", tasktitle=" + tasktitle + ", tasktext=" + tasktext + ", taskcompleted="
+				+ taskcompleted + ", email=" + email + "]";
 	}
 	
 	
