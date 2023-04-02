@@ -24,7 +24,7 @@ public class App
 //        empService.setName("some value");
 //        empService.setName("Sara");
 //        
-//        empService.setName("Manish");
+        empService.setName("Manish");
         
         CustomerServiceImpl cService = context.getBean(CustomerServiceImpl.class);
        // cService.applyForChequeBook(12345);

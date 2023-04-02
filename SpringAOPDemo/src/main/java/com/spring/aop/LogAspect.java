@@ -19,14 +19,16 @@ public class LogAspect {
 	}
 	// logger in java
 	// before -> advice where u provide pointcut expression
-//	@Before("execution(* com.spring.aop.EmpService.setName(String))")
-//	public void beforeAdvice(JoinPoint jp)
-//	{
-//		System.out.println("\n************************\n");
-//		System.out.println("Before advice applied "+jp.getTarget());
-//		System.out.println(jp.getSignature().getName());
-//		System.out.println("\n************************\n");
-//	}
+	// setName(String) => ..
+	// getName()
+	@Before("execution(* com.spring.aop.EmpService.setName(..))")
+	public void beforeAdvice(JoinPoint jp)
+	{
+		System.out.println("\n************************\n");
+		System.out.println("Before advice applied "+jp.getTarget());
+		System.out.println(jp.getSignature().getName());
+		System.out.println("\n************************\n");
+	}
 //	@After("execution(* com.spring.aop.EmpService.setName(String))"
 //			+ " && args(name)")
 //	public void afterAdvice(JoinPoint jp, String name)
@@ -67,23 +69,23 @@ public class LogAspect {
 //		System.out.println("\n************************\n");
 //	}
 	
-	@Around("execution(* com.spring.aop.*.*(..))")
-	public String aroundAdvice(ProceedingJoinPoint pjp )
-	{
-		String data = null;
-		System.out.println("\n******** that is checking the cache****************\n");
-		System.out.println("Around advice applied before calling teh actual method"+pjp.getTarget());
-		System.out.println(pjp.getSignature().getName());
-		System.out.println("\n************************\n");
-		// proceed will proceed calling the actual method
-		try {
-		 data =(String) pjp.proceed();
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return data.toUpperCase();
-	}
+//	@Around("execution(* com.spring.aop.*.*(..))")
+//	public String aroundAdvice(ProceedingJoinPoint pjp )
+//	{
+//		String data = null;
+//		System.out.println("\n******** that is checking the cache****************\n");
+//		System.out.println("Around advice applied before calling teh actual method"+pjp.getTarget());
+//		System.out.println(pjp.getSignature().getName());
+//		System.out.println("\n************************\n");
+//		// proceed will proceed calling the actual method
+//		try {
+//		 data =(String) pjp.proceed();
+//		} catch (Throwable e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return data.toUpperCase();
+//	}
 	
 	
 }
