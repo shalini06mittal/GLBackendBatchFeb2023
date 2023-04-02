@@ -19,15 +19,25 @@ public class App
     	AnnotationConfigApplicationContext context
     	= new AnnotationConfigApplicationContext(App.class);
         EmpService empService = context.getBean(EmpService.class);
-        System.out.println(empService.getClass().getName());
-        System.out.println(empService.applyNow());
-        empService.setName("some value");
+//        System.out.println(empService.getClass().getName());
+//        System.out.println(empService.applyNow());
+//        empService.setName("some value");
 //        empService.setName("Sara");
 //        
 //        empService.setName("Manish");
         
         CustomerServiceImpl cService = context.getBean(CustomerServiceImpl.class);
-        cService.applyForChequeBook(12345);
+       // cService.applyForChequeBook(12345);
+        
+        System.out.println(empService.applyNow());
+//        try {
+//			empService.applyThen();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			//e.printStackTrace();
+//			System.out.println("erro");
+//		}
+//        System.out.println("Balance "+cService.balance(1234));
 //        System.out.println(cService.getClass().getName());
     }
 }
