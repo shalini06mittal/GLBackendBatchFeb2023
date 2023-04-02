@@ -1,22 +1,21 @@
 package com.gl.boot.entity;
 
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 // bean or pojo or model or entity class
 // FYI - lombok, loggers
 
 @NoArgsConstructor
 @Data
-//@Entity
+@Entity
 public class Customer {
 
-//	@Id
+	@Id
 	private String email;
 	private String custname;
 	private String city;
