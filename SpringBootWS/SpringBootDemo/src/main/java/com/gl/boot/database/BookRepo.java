@@ -10,4 +10,5 @@ import com.gl.boot.entity.Customer;
 public interface BookRepo extends CrudRepository<Book, Integer>{
 	
 	List<Book> findByAuthorAid(int aid);
+	// custom query price > value and authorid =  ?
 }

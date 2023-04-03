@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.gl.boot.database.CustomerRepo;
 import com.gl.boot.entity.Customer;
+import com.gl.boot.entity.CustomerView;
 
 @Service
 public class CustomerService {
@@ -74,6 +75,25 @@ public class CustomerService {
 	{
 		List<Customer> customers = new ArrayList<>();
 		 this.cRepo.findByCitiesAndCustnameLikeOrCustnameLike(city, name1, name2).forEach(customers::add);
+		 return customers;
+	}
+	
+	public List<Customer> getAllCustomersPhoneStartsWith(String phone)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.getAllCustomersWhosePhoneStartswith(phone).forEach(customers::add);
+		 return customers;
+	}
+	public List<Customer> getAllCustomersPhoneStartsWithJPQL(String phone)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.getAllCustomersWhosePhoneStartswithUseJPQL(phone).forEach(customers::add);
+		 return customers;
+	}
+	public List<CustomerView> getAllCustomersViewPhoneStartsWithJPQL(String phone)
+	{
+		List<CustomerView> customers = new ArrayList<>();
+		 this.cRepo.getAllCustomersViewWhosePhoneStartswith(phone).forEach(customers::add);
 		 return customers;
 	}
 	

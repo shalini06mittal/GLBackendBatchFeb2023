@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import com.gl.boot.database.CustomerDB;
 import com.gl.boot.entity.Book;
 import com.gl.boot.entity.Customer;
+import com.gl.boot.entity.CustomerView;
 import com.gl.boot.service.BookService;
 import com.gl.boot.service.CustomerService;
 // auto configuration
@@ -47,13 +48,21 @@ public class SpringBootDemoApplication {
 		
 
 		
+//		System.out.println();
+//		for(Customer c1 : customerService.getAllCustomersByCityAndName("Nagpur","M%"))
+//			System.out.println(c1);
+//		
+//		System.out.println();
+//		for(Customer c1 : customerService.getAllCustomersByCityAndNameOr("Nagpur","M%", "N%"))
+//			System.out.println(c1);
+		
 		System.out.println();
-		for(Customer c1 : customerService.getAllCustomersByCityAndName("Nagpur","M%"))
+		for(Customer c1 : customerService.getAllCustomersPhoneStartsWith("9%"))
 			System.out.println(c1);
 		
 		System.out.println();
-		for(Customer c1 : customerService.getAllCustomersByCityAndNameOr("Nagpur","M%", "N%"))
-			System.out.println(c1);
+		for(CustomerView c1 : customerService.getAllCustomersViewPhoneStartsWithJPQL("9%"))
+			System.out.println(c1.getCustname()+ " "+c1.getPhone());
 		
 //		BookService bookService = context.getBean(BookService.class);
 //		for(Book book : bookService.getBooksByAuthorId(1))
