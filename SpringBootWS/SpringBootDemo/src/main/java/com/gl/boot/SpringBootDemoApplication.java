@@ -23,7 +23,7 @@ public class SpringBootDemoApplication {
 //		System.out.println(customerDB.getTemplate());
 //		System.out.println(customerDB.getCustomerCount());
 		
-//		CustomerService customerService = context.getBean(CustomerService.class);
+		CustomerService customerService = context.getBean(CustomerService.class);
 //		System.out.println(customerService.getCustomerCount());
 //		
 //		System.out.println(customerService.getCustomerById("mohit@gmail.com"));
@@ -44,13 +44,18 @@ public class SpringBootDemoApplication {
 //		System.out.println();
 //		for(Customer c1 : customerService.getAllCustomersByCity("Nagpur"))
 //			System.out.println(c1);
-//		System.out.println();
-//		for(Customer c1 : customerService.getAllCustomersByCityAndName("Nagpur","A%"))
-//			System.out.println(c1);
 		
-		BookService bookService = context.getBean(BookService.class);
-		for(Book book : bookService.getBooksByAuthorId(1))
-			System.out.println(book);
+		System.out.println();
+		for(Customer c1 : customerService.getAllCustomersByNameLike("A%"))
+			System.out.println(c1);
+		
+		System.out.println();
+		for(Customer c1 : customerService.getAllCustomersByCityAndName("Noida","A%"))
+			System.out.println(c1);
+		
+//		BookService bookService = context.getBean(BookService.class);
+//		for(Book book : bookService.getBooksByAuthorId(1))
+//			System.out.println(book);
 		
 	}
 
