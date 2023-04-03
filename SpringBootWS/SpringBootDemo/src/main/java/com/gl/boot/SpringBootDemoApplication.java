@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.gl.boot.database.CustomerDB;
+import com.gl.boot.entity.Book;
 import com.gl.boot.entity.Customer;
+import com.gl.boot.service.BookService;
 import com.gl.boot.service.CustomerService;
 // auto configuration
 // componenst scanning
@@ -21,24 +23,34 @@ public class SpringBootDemoApplication {
 //		System.out.println(customerDB.getTemplate());
 //		System.out.println(customerDB.getCustomerCount());
 		
-		CustomerService customerService = context.getBean(CustomerService.class);
-		System.out.println(customerService.getCustomerCount());
+//		CustomerService customerService = context.getBean(CustomerService.class);
+//		System.out.println(customerService.getCustomerCount());
+//		
+//		System.out.println(customerService.getCustomerById("mohit@gmail.com"));
+//		
+//		for(Customer c : customerService.getAllCustomers())
+//			System.out.println(c);
 		
-		System.out.println(customerService.getCustomerById("mohit@gmail.com"));
+//		Customer c = new Customer();
+//		c.setEmail("akash@gmail.com");
+//		c.setCity("Delhi");
+//		c.setCustname("Akash");
+//		c.setPassword("ak");
+//		c.setPhone("8765678765");
 		
-		for(Customer c : customerService.getAllCustomers())
-			System.out.println(c);
+//		System.out.println(customerService.insertCustomer(c));
+//		
+//		System.out.println(customerService.insertCustomer(c));
+//		System.out.println();
+//		for(Customer c1 : customerService.getAllCustomersByCity("Nagpur"))
+//			System.out.println(c1);
+//		System.out.println();
+//		for(Customer c1 : customerService.getAllCustomersByCityAndName("Nagpur","A%"))
+//			System.out.println(c1);
 		
-		Customer c = new Customer();
-		c.setEmail("akash@gmail.com");
-		c.setCity("Delhi");
-		c.setCustname("Akash");
-		c.setPassword("ak");
-		c.setPhone("8765678765");
-		
-		System.out.println(customerService.insertCustomer(c));
-		
-		System.out.println(customerService.insertCustomer(c));
+		BookService bookService = context.getBean(BookService.class);
+		for(Book book : bookService.getBooksByAuthorId(1))
+			System.out.println(book);
 		
 	}
 

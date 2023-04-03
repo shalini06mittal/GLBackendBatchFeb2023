@@ -47,8 +47,27 @@ public class CustomerService {
 	}
 	public List<Customer> getAllCustomers()
 	{
-		List<Customer> customers = new ArrayList();
+		List<Customer> customers = new ArrayList<>();
 		 this.cRepo.findAll().forEach(customers::add);
+		 return customers;
+	}
+	
+	public List<Customer> getAllCustomersByCity(String city)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.findByCities(city).forEach(customers::add);
+		 return customers;
+	}
+	public List<Customer> getAllCustomersByNameLike( String name)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.findByCustnameLike( name).forEach(customers::add);
+		 return customers;
+	}
+	public List<Customer> getAllCustomersByCityAndName(String city, String name)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.findByCitiesAndCustnameLike(city, name).forEach(customers::add);
 		 return customers;
 	}
 	

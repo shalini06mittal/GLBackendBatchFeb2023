@@ -1,6 +1,7 @@
 package com.gl.boot.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,7 +19,8 @@ public class Customer {
 	@Id
 	private String email;
 	private String custname;
-	private String city;
+	@Column(name="city")
+	private String cities;
 	private String phone;
 	private String password;
 
