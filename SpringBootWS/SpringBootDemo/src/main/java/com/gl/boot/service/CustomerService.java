@@ -70,5 +70,11 @@ public class CustomerService {
 		 this.cRepo.findByCitiesAndCustnameLike(city, name).forEach(customers::add);
 		 return customers;
 	}
+	public List<Customer> getAllCustomersByCityAndNameOr(String city, String name1, String name2)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.findByCitiesAndCustnameLikeOrCustnameLike(city, name1, name2).forEach(customers::add);
+		 return customers;
+	}
 	
 }

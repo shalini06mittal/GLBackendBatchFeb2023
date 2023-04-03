@@ -12,4 +12,5 @@ public interface CustomerRepo extends CrudRepository<Customer, String>{
 	List<Customer> findByCities(String city);
 	List<Customer> findByCustnameLike(String name);
 	List<Customer> findByCitiesAndCustnameLike(String city , String name);
+	List<Customer> findByCitiesAndCustnameLikeOrCustnameLike(String city , String name1, String name2);
 }

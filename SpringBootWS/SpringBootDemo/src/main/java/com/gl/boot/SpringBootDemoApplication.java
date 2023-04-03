@@ -45,12 +45,14 @@ public class SpringBootDemoApplication {
 //		for(Customer c1 : customerService.getAllCustomersByCity("Nagpur"))
 //			System.out.println(c1);
 		
+
+		
 		System.out.println();
-		for(Customer c1 : customerService.getAllCustomersByNameLike("A%"))
+		for(Customer c1 : customerService.getAllCustomersByCityAndName("Nagpur","M%"))
 			System.out.println(c1);
 		
 		System.out.println();
-		for(Customer c1 : customerService.getAllCustomersByCityAndName("Noida","A%"))
+		for(Customer c1 : customerService.getAllCustomersByCityAndNameOr("Nagpur","M%", "N%"))
 			System.out.println(c1);
 		
 //		BookService bookService = context.getBean(BookService.class);
