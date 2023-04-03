@@ -7,8 +7,12 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.gl.boot.database.CustomerPagingAndSortingRepo;
 import com.gl.boot.database.CustomerRepo;
 import com.gl.boot.entity.Customer;
 import com.gl.boot.entity.CustomerView;
@@ -18,6 +22,9 @@ public class CustomerService {
 
 	@Autowired
 	private CustomerRepo cRepo;
+	
+	@Autowired
+	private CustomerPagingAndSortingRepo cAndSortingRepo;
 	
 	public long getCustomerCount()
 	{
@@ -95,6 +102,28 @@ public class CustomerService {
 		List<CustomerView> customers = new ArrayList<>();
 		 this.cRepo.getAllCustomersViewWhosePhoneStartswith(phone).forEach(customers::add);
 		 return customers;
+	}
+	
+	public List<Customer> getFilteredCustomers(Integer pageno, Integer size)
+	{
+		List<Customer> customers = new ArrayList<>();
+		
+		Pageable pageable = PageRequest.of(pageno, size);
+		Page<Customer> pages = this.cAndSortingRepo.findAll(pageable);
+		
+		customers = pages.getContent();
+		
+		int totalPages = pages.getTotalPages();
+		
+		int elementsOnEachPage = pages.getNumberOfElements();
+		
+		long totalElements = pages.getTotalElements();
+		
+		System.out.println("Total Pages "+totalPages);
+		System.out.println("Total elements "+totalElements);
+		System.out.println("elements On each Page "+elementsOnEachPage);
+		
+		return customers;
 	}
 	
 }

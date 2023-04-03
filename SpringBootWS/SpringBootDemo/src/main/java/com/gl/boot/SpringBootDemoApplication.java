@@ -56,13 +56,22 @@ public class SpringBootDemoApplication {
 //		for(Customer c1 : customerService.getAllCustomersByCityAndNameOr("Nagpur","M%", "N%"))
 //			System.out.println(c1);
 		
-		System.out.println();
-		for(Customer c1 : customerService.getAllCustomersPhoneStartsWith("9%"))
-			System.out.println(c1);
+//		System.out.println();
+//		for(Customer c1 : customerService.getAllCustomersPhoneStartsWith("9%"))
+//			System.out.println(c1);
+//		
+//		System.out.println();
+//		for(CustomerView c1 : customerService.getAllCustomersViewPhoneStartsWithJPQL("9%"))
+//			System.out.println(c1.getCustname()+ " "+c1.getPhone());
+		
 		
 		System.out.println();
-		for(CustomerView c1 : customerService.getAllCustomersViewPhoneStartsWithJPQL("9%"))
-			System.out.println(c1.getCustname()+ " "+c1.getPhone());
+		for(Customer c1 : customerService.getFilteredCustomers(0, 8))
+			System.out.println(c1.getEmail()+ " "+c1.getPhone());
+		
+		System.out.println();
+		for(Customer c1 : customerService.getFilteredCustomers(1, 6))
+			System.out.println(c1.getEmail()+ " "+c1.getPhone());
 		
 //		BookService bookService = context.getBean(BookService.class);
 //		for(Book book : bookService.getBooksByAuthorId(1))
