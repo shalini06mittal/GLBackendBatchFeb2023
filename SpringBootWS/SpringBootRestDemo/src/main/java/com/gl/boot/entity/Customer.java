@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import org.springframework.lang.Nullable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
+@AllArgsConstructor
 @Table(name="customer")
 public class Customer {
 
