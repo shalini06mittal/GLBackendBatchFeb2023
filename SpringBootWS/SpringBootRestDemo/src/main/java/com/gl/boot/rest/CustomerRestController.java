@@ -25,6 +25,12 @@ public class CustomerRestController {
 		// req to an API
 		return service.getAllCustomers();
 	}
+	@GetMapping("/city/{city}")
+	public List<Customer> getAllCustomers(@PathVariable String city)
+	{
+		// req to an API
+		return service.getAllCustomersByCity(city);
+	}
 	@GetMapping("/{email}")
 	public Customer getCustomerByEmail(@PathVariable String email)
 	{

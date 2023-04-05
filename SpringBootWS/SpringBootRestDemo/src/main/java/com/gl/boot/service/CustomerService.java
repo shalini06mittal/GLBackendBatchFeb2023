@@ -53,6 +53,13 @@ public class CustomerService {
 		 return customers;
 	}
 	
+	public List<Customer> getAllCustomersByCity(String city)
+	{
+		List<Customer> customers = new ArrayList<>();
+		 this.cRepo.findByCities(city).forEach(customers::add);
+		 return customers;
+	}
+	
 	
 	
 }

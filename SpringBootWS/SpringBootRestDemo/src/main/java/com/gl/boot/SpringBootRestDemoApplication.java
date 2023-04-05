@@ -23,9 +23,9 @@ public class SpringBootRestDemoApplication {
 	void setCustomerData()
 	{
 		Customer c1 = new Customer("a@a.c", "AA", "Mumbai", "1212121212", "aa");
-		Customer c2 = new Customer("b@a.c", "BB", "Mumbai", "1212121212", "bb");
+		Customer c2 = new Customer("b@a.c", "BB", "Pune", "1212121212", "bb");
 		Customer c3 = new Customer("c@a.c", "CC", "Mumbai", "1212121212", "cc");
-		Customer c4 = new Customer("d@a.c", "DD", "Mumbai", "1212121212", "dd");
+		Customer c4 = new Customer("d@a.c", "DD", "Delhi", "1212121212", "dd");
 		
 		customerService.insertCustomer(c1);
 		customerService.insertCustomer(c2);
