@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +47,7 @@ public class CustomerRestController {
 		List<Customer> customers = service.getAllCustomers();
 		return ResponseEntity.ok(new ResponseDTO("SUCCESS", customers));
 	}
+
 	// http://localhost/city/Mumbai => path variable
 	// http://localhost?city=Mumbai => request param
 	// producer
@@ -52,6 +55,7 @@ public class CustomerRestController {
 	@ResponseStatus(code = HttpStatus.FOUND)
 	public List<Customer> getAllCustomers(@PathVariable String city)
 	{
+		System.out.println("get by city");
 		// req to an API
 		return service.getAllCustomersByCity(city);
 	}
@@ -59,19 +63,13 @@ public class CustomerRestController {
 	public ResponseEntity<Object> getCustomerByEmail(@PathVariable String email)
 	{
 		Map<String, Object> map = new HashMap<>();
-		try {
-			Customer customer = service.getCustomerById(email);
-			map.put("customer", customer);
-			return ResponseEntity
-					.status(HttpStatus.FOUND)
-					.body(map);
-		}catch(EntityNotFoundException e)
-		{
-			map.put("message", e.getMessage());
-			return ResponseEntity
-					.status(HttpStatus.NOT_FOUND)
-					.body(map);
-		}
+
+		Customer customer = service.getCustomerById(email);
+		map.put("customer", customer);
+		return ResponseEntity
+				.status(HttpStatus.FOUND)
+				.body(map);
+
 	}
 	// accept , produces or consumes
 	//	@PostMapping
@@ -83,19 +81,38 @@ public class CustomerRestController {
 	////		Customer c= this.service.insertCustomer(customer);
 	//		return "Customer registered";
 	//	}
+	//	@PostMapping
+	//	public  ResponseEntity<ResponseDTO> insertCustomer(@RequestBody Customer customer)
+	//	{
+	//		System.out.println(customer);
+	//		try {
+	//			Customer c= this.service.insertCustomer(customer);
+	//			return ResponseEntity.status(HttpStatus.CREATED)
+	//					.body(new ResponseDTO("SUCCESS", c));
+	//		}catch(EntityExistsException e)
+	//		{
+	//			return ResponseEntity.status(HttpStatus.CONFLICT)
+	//					.body(new ResponseDTO("FAILURE", e.getMessage()));
+	//		}
+	//	}
+
+	@ExceptionHandler(EntityExistsException.class)
+	//@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ResponseEntity<Map<String, String>> handleEntityExistsException(Exception e)
+	{
+		System.out.println("error");
+		Map<String, String> map = new HashMap<>();
+		map.put("ERROR", e.getMessage());
+		return ResponseEntity.badRequest().body(map);
+	}
+
 	@PostMapping
 	public  ResponseEntity<ResponseDTO> insertCustomer(@RequestBody Customer customer)
 	{
-		System.out.println(customer);
-		try {
-			Customer c= this.service.insertCustomer(customer);
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(new ResponseDTO("SUCCESS", c));
-		}catch(EntityExistsException e)
-		{
-			return ResponseEntity.status(HttpStatus.CONFLICT)
-					.body(new ResponseDTO("FAILURE", e.getMessage()));
-		}
+		Customer c= this.service.insertCustomer(customer);
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(new ResponseDTO("SUCCESS", c));
+
 	}
 	@PutMapping
 	public String updateCustomer(@RequestBody Customer customer)
