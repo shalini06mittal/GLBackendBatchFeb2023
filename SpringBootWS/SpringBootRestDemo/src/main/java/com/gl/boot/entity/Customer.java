@@ -27,8 +27,8 @@ public class Customer {
 	private String email;
 
 	private String custname;
+	
 	@Column(name="city")
-
 	private String cities;
 
 	private String phone;
